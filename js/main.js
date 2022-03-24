@@ -139,19 +139,15 @@ function bildReferences(references) {
 	let block = document.createElement('div')
 	block.classList.add('references')
 	for (let reference in references) {
-		for (let key in references[reference]) {
-			if (key == 'input') {
-				console.log('ref')
-				let input = document.createElement('input')
-				for (let attr in references[reference][key]) {
-					input.setAttribute(attr, references[reference][key][attr] )
-				}
-				block.append(input)
-			} else {
-				console.log(key)
-			}
-		
+		console.log(references[reference])
+		if (references[reference].hasOwnProperty('input')) {
+			console.log('check ref')
+			block.append(createCheckboxReference(references))
+			break
+		} else {
+			block.append(createReference(references[reference]))
 		}
+
 	}
 	parse.append(block)
 }
@@ -281,6 +277,43 @@ function createTechnology(inputObj) {
 
 	block.append(select)
 
+	return block
+}
+
+
+function createReference (inputObj) {
+	let label = document.createElement('label')
+	let textWithoutRef = ''
+	if (inputObj['text without ref']) {
+		textWithoutRef	= inputObj['text without ref'] + ' '
+	} 
+	let link = ''
+	if (inputObj['text']) {
+		link = document.createElement('a')
+		link.innerHTML = inputObj['text']
+		link.setAttribute('href', inputObj['ref'])
+	}
+	
+
+	label.append(textWithoutRef)
+	label.append(link)
+	return label
+}
+
+function createCheckboxReference(inputObj) {
+	let block = document.createElement('div')
+	block.classList.add('item-input--checkbox')
+
+	let label = createReference(inputObj[1])
+	label.setAttribute('for', id)
+	let input = document.createElement('input')
+	input.id = id
+	for (let attr in inputObj[0].input) {
+		input.setAttribute(attr, inputObj[0].input[attr] )
+	}
+	id++
+	block.append(input)
+	block.append(label)
 	return block
 }
 	});

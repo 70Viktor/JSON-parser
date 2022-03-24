@@ -287,3 +287,15 @@ h2 {
       -ms-flex-direction: column;
           flex-direction: column;
 }
+
+.references {
+  font-size: 18px;
+}
+
+.references a {
+  text-decoration: underline;
+}
+
+.references > label {
+  margin-right: 15px;
+}
