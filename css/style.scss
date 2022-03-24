@@ -1,0 +1,162 @@
+// Файл обнуляющих стилей
+@import "../css/nullstyle";
+// Подключение шрифта
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+//font-family: 'Roboto', sans-serif;
+
+//=============================================================================
+//_____ОБЩИЕ_СТИЛИ_____________________________________________________________
+//=============================================================================
+*{
+	font-family: 'Roboto', sans-serif;
+	color: #885731
+}
+
+body {
+	background: #f8f5f4;
+}
+
+h1 {
+	font-size: 60px;
+	line-height: 100px;
+	font-weight: bold;
+	margin-bottom: 40px;
+}
+h2 {
+	text-transform: uppercase;
+	font-size: 40px;
+	line-height: 60px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+.wrapper {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100%;
+}
+.form {
+}
+.form__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.file__item {
+	margin-bottom: 20px;
+	position: relative;
+}
+.file__input {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	font-size: 0;
+}
+.file__button {
+	display: inline-flex;
+	min-height: 40px;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+	background: #b89784;
+}
+
+.buttons {
+	display: flex;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	min-width: 150px;
+	margin: 20px;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background: #947357;
+	color: #f8f5f4;
+	letter-spacing: 1px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	background: #885731;
+}
+
+#parse {
+	width: 530px;
+	margin: 0 auto;
+}
+.item-input {
+	margin-bottom: 30px;
+
+	& label {
+		font-size: 18px;
+		display: block;
+		margin-bottom: 10px;
+	}
+	& input {
+		height: 50px;
+		border: 5px;
+		padding: 0 20px;
+		width: 100%;
+		font-size: 18px;
+		color: #885731;
+	}
+	& .input-color {
+		max-width: 50%;
+	}
+}
+.item-input--checkbox {
+	display: flex;
+	flex-direction: column;
+	text-indent: 20px;
+		& input {
+			display: none;
+		}
+		& label {
+			
+			font-size: 16px;
+			line-height: 20px;
+			display: inline-flex;
+			align-items: center;
+			position: relative;
+			cursor: pointer;
+		}
+		& label::before {
+			content: "";
+			align-self: flex-start;
+			flex: 0 0 24px;
+			height: 24px;
+			background-color: #b89784;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+
+		& label::after {
+			content: "";
+			width: 16px;
+			height: 16px;
+			position: absolute;
+			top: 4px;
+			left: 4px;
+			background-color: #885731;
+			border-radius: 5px;
+			transform: scale(0);
+			transition: all 0.3s;
+		}
+	}
+	.item-input--checkbox > input:checked + label::after {
+		transform: scale(1);
+	}
+
+	.select{
+		display: flex;
+		flex-direction: column;
+	}
