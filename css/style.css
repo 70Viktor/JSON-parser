@@ -76,11 +76,11 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------*/
 * {
   font-family: 'Roboto', sans-serif;
-  color: #885731;
 }
 
-body {
-  background: #f8f5f4;
+* body {
+  background: #BFD7ED;
+  color: #003B73;
 }
 
 h1 {
@@ -159,7 +159,7 @@ h2 {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 20px;
-  background: #b89784;
+  background: #60A3D9;
 }
 
 .buttons {
@@ -179,14 +179,16 @@ h2 {
   margin: 20px;
   padding: 10px 20px;
   border-radius: 5px;
-  background: #947357;
-  color: #f8f5f4;
+  background: #60A3D9;
+  color: #BFD7ED;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: #885731;
+  background: #0074B7;
 }
 
 #parse {
@@ -210,7 +212,7 @@ h2 {
   padding: 0 20px;
   width: 100%;
   font-size: 18px;
-  color: #885731;
+  border-radius: 5px;
 }
 
 .item-input .input-color {
@@ -253,8 +255,8 @@ h2 {
       -ms-flex: 0 0 24px;
           flex: 0 0 24px;
   height: 24px;
-  background-color: #b89784;
-  border-radius: 5px;
+  background-color: #60A3D9;
+  border-radius: 4px;
   margin-bottom: 10px;
 }
 
@@ -265,8 +267,8 @@ h2 {
   position: absolute;
   top: 4px;
   left: 4px;
-  background-color: #885731;
-  border-radius: 5px;
+  background-color: #0074B7;
+  border-radius: 4px;
   -webkit-transform: scale(0);
           transform: scale(0);
   -webkit-transition: all 0.3s;
@@ -294,6 +296,7 @@ h2 {
 
 .references a {
   text-decoration: underline;
+  color: #0074B7;
 }
 
 .references > label {

@@ -7,6 +7,7 @@ let formFile = document.getElementById('fileInput')
 const parse = document.getElementById('parse')
 let content
 let id = 0
+let color
 
 formFile.addEventListener('change', () => readFile(formFile))
 
@@ -37,6 +38,14 @@ function jsonParse(e) {
 		bildHTML(content)
 	} else {
 		alert('Файл не загружен')
+	}
+
+	if (document.querySelector('.input-color')) {
+	color = document.querySelector('.input-color')
+	color.addEventListener('input', (e) => {
+	console.log(color)
+	document.body.style.color = e.target.value
+})
 	}
 }
 
@@ -173,6 +182,7 @@ function createInput (inputObj) {
 }
 
 function createColor (inputObj) {
+
 	let block = document.createElement('div')
 	block.classList.add('input-color')
 
@@ -193,9 +203,12 @@ function createColor (inputObj) {
 		option.append(inputObj.input.colors[color])
 		list.append(option)
 	}
-	input.setAttribute('value', list.lastChild.firstChild.textContent)
+	input.setAttribute('value', list.firstChild.firstChild.textContent)
 	block.append(input)
 	block.append(list)
+
+	
+
 	return block
 }
 
@@ -316,5 +329,8 @@ function createCheckboxReference(inputObj) {
 	block.append(label)
 	return block
 }
+
+
+
 	});
 
