@@ -138,12 +138,17 @@ h2 {
 
 .file__input {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
+  width: 150px !important;
   height: 100%;
   opacity: 0;
   font-size: 0;
+}
+
+.filePreview img {
+  max-width: 120px;
+  margin-bottom: 15px;
 }
 
 .file__button {

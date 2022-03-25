@@ -8,6 +8,8 @@ const parse = document.getElementById('parse')
 let content
 let id = 0
 let color
+let filesInput
+let darkTheme
 
 formFile.addEventListener('change', () => readFile(formFile))
 
@@ -41,11 +43,31 @@ function jsonParse(e) {
 	}
 
 	if (document.querySelector('.input-color')) {
-	color = document.querySelector('.input-color')
-	color.addEventListener('input', (e) => {
-	console.log(color)
-	document.body.style.color = e.target.value
-})
+		color = document.querySelector('.input-color')
+		color.addEventListener('input', (e) => {
+		document.body.style.color = e.target.value
+		})
+	}
+	if (document.querySelector('.file__input--photo')) {
+		filesInput = document.querySelectorAll('.file__input--photo')
+		for (let item in filesInput) {
+			filesInput[item].addEventListener('change', (e) => {
+				uploadPreview(filesInput[item].files[0], filesInput[item])
+			})
+		}
+	}
+
+	if (document.querySelector('.darkTheme')) {
+		darkTheme = document.querySelector('.darkTheme')
+		darkTheme.addEventListener('click', () => {
+			if (darkTheme.checked) {
+				document.body.style.background = "#002446"
+			} else {
+				document.body.style.background = "#BFD7ED"
+			}
+			console.log('dark')
+			
+		})
 	}
 }
 
@@ -226,6 +248,11 @@ function createCheckbox(inputObj) {
 		input.setAttribute(attr, inputObj.input[attr] )
 	}
 	id++
+
+	if (inputObj.label == 'Turn on dark theme?')	{
+		input.classList.add('darkTheme')
+		console.log('has dark')
+	}
 	block.append(input)
 	block.append(label)
 	return block
@@ -241,20 +268,30 @@ function createFile(inputObj) {
 		block.append(label)
 	}
 
+	let file = document.createElement('div')
+	file.style.position = 'relative'
+
 	let input = document.createElement('input')
 	input.classList.add('file__input')
+	input.classList.add('file__input--photo')
 
 	for (let attr in inputObj.input) {
 		input.setAttribute(attr, inputObj.input[attr] )
 	}
 
-	block.append(input)
+	file.append(input)
+
+	let preview = document.createElement('div')
+	preview.classList.add('filePreview')
+	file.append(preview)
 
 	let button = document.createElement('div')
 	button.classList.add('file__button')
 	button.innerHTML = 'Выбрать файл'
 
-	block.append(button)
+	file.append(button)
+
+	block.append(file)
 	return block
 }
 
@@ -330,7 +367,19 @@ function createCheckboxReference(inputObj) {
 	return block
 }
 
+function uploadPreview(file, block) {
+	if (!['image/jpeg', 'image/gif', 'image/png'].includes(file.type)) {
+		alert('Разрешены только изображения')
+		return
+	} else {
+		let reader = new FileReader()
+		reader.readAsDataURL(file)
+		reader.onload = function(e) {
+		block.nextSibling.innerHTML = `<img src="${e.target.result}" alt="" >`
+		}
+	}
 
+}
 
 	});
 
