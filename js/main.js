@@ -10,32 +10,43 @@ let id = 0
 let color
 let filesInput
 let darkTheme
+let links
 
 formFile.addEventListener('change', () => readFile(formFile))
 
 function readFile(formFile) {
+	document.body.classList.add('load')
 	let file = formFile.files[0]
-	console.log('read')
 
 	let reader = new FileReader();
 
 	reader.readAsText(file);
 
 	reader.onload = function() {
-		console.log(reader.result);
-		content = JSON.parse(reader.result)
+		try {
+			content = JSON.parse(reader.result)
+			console.log(reader.result)
+		}
+		catch {
+			alert('Выберете файл, содержащий JSON')
+		}
+		
 	};
 
 	reader.onerror = function() {
 		console.log(reader.error);
-	};
+	
+	}
+	 document.body.classList.remove('load')
 	}
 
-form.addEventListener('submit', jsonParse)
-
-function jsonParse(e) {
-	console.log('submit')
+form.addEventListener('submit', (e) => {
 	e.preventDefault()
+	jsonParse()
+})
+
+function jsonParse() {
+	
 	if (content) {
 		bildHTML(content)
 	} else {
@@ -48,13 +59,15 @@ function jsonParse(e) {
 		document.body.style.color = e.target.value
 		})
 	}
+	
 	if (document.querySelector('.file__input--photo')) {
 		filesInput = document.querySelectorAll('.file__input--photo')
-		for (let item in filesInput) {
-			filesInput[item].addEventListener('change', (e) => {
-				uploadPreview(filesInput[item].files[0], filesInput[item])
-			})
+		for (let item = 0; item < filesInput.length; item++) {
+				filesInput[item].addEventListener('change', (e) => {
+					uploadPreview(filesInput[item].files[0], filesInput[item])
+				})
 		}
+		
 	}
 
 	if (document.querySelector('.darkTheme')) {
@@ -68,6 +81,24 @@ function jsonParse(e) {
 			console.log('dark')
 			
 		})
+	}
+	if (document.querySelector('.link')) {
+		links = document.querySelectorAll('.link')
+		console.dir(links)
+		for (let link = 0; link < links.length; link++) {
+			links[link].addEventListener('click', (e) => {
+				e.preventDefault()
+				
+				fetch(links[link].getAttribute('href'))
+				.then(response => response.json())
+				.then(jsonResponse => {
+					parse.innerHTML = ""
+					jsonParse(content = jsonResponse)
+				})
+				.catch(err => alert(`Ошибка чтения файла ${links[link].getAttribute('href')}`))
+				
+			})
+		}
 	}
 }
 
@@ -170,9 +201,7 @@ function bildReferences(references) {
 	let block = document.createElement('div')
 	block.classList.add('references')
 	for (let reference in references) {
-		console.log(references[reference])
 		if (references[reference].hasOwnProperty('input')) {
-			console.log('check ref')
 			block.append(createCheckboxReference(references))
 			break
 		} else {
@@ -340,8 +369,9 @@ function createReference (inputObj) {
 	let link = ''
 	if (inputObj['text']) {
 		link = document.createElement('a')
+		link.classList.add('link')
 		link.innerHTML = inputObj['text']
-		link.setAttribute('href', inputObj['ref'])
+		link.setAttribute('href',`js/${inputObj['ref']}.js`)
 	}
 	
 
@@ -366,6 +396,8 @@ function createCheckboxReference(inputObj) {
 	block.append(label)
 	return block
 }
+
+
 
 function uploadPreview(file, block) {
 	if (!['image/jpeg', 'image/gif', 'image/png'].includes(file.type)) {

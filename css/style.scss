@@ -36,14 +36,30 @@ h2 {
 	margin-bottom: 30px;
 }
 .wrapper {
+	position: relative;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	flex-direction: column;
 	min-height: 100%;
 }
+.load::before{
+	content: "reading";
+	position: absolute;
+	top: 0;right: 0;bottom: 0;left: 0;
+	font-size: 40px;
+	text-transform: uppercase;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	background-color: rgba($color: #000000, $alpha: 0.9);
+	z-index: 1000;
+}
+
 .form {
 }
+
 .form__body {
 	display: flex;
 	flex-direction: column;
