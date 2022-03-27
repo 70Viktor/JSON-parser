@@ -27,6 +27,8 @@ h1 {
 	line-height: 100px;
 	font-weight: bold;
 	margin-bottom: 40px;
+	text-align: center;
+	@media (max-width: 425px){margin-bottom: 25px;font-size: 40px; line-height: 60px;}
 }
 h2 {
 	text-transform: uppercase;
@@ -34,14 +36,12 @@ h2 {
 	line-height: 60px;
 	font-weight: bold;
 	margin-bottom: 30px;
+	@media (max-width: 425px){margin-bottom: 20px;font-size: 30px; line-height: 40px;}
 }
 .wrapper {
 	position: relative;
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	flex-direction: column;
-	min-height: 100%;
+	max-width: 530px;
+	margin: 0 auto;
 }
 .load::before{
 	content: "reading";
@@ -57,17 +57,18 @@ h2 {
 	z-index: 1000;
 }
 
-.form {
+.form,
+.parse,
+	h1{
+	padding: 0 15px;
 }
 
-.form__body {
+.file {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
-	align-items: center;
 }
 
-.file__item {
+.file__item {	
 	margin-bottom: 20px;
 	position: relative;
 }
@@ -98,13 +99,11 @@ h2 {
 
 .buttons {
 	display: flex;
+	justify-content: space-evenly;
+	padding: 20px 0;
 }
 
 .btn {
-	display: flex;
-	justify-content: center;
-	min-width: 150px;
-	margin: 20px;
 	padding: 10px 20px;
 	border-radius: 5px;
 	background: $backBtnColor;
@@ -119,12 +118,9 @@ h2 {
 	background: $hoverColor
 }
 
-#parse {
-	width: 530px;
-	margin: 0 auto;
-}
 .item-input {
 	margin-bottom: 30px;
+	@media (max-width: 425px){ margin-bottom: 15px;}
 
 	& label {
 		font-size: 18px;
@@ -140,7 +136,6 @@ h2 {
 		border-radius: 5px;
 	}
 	& .input-color {
-		max-width: 50%;
 	}
 }
 .item-input--checkbox {
@@ -158,6 +153,7 @@ h2 {
 			align-items: center;
 			position: relative;
 			cursor: pointer;
+			@media (max-width: 425px){font-size: 14px;}
 		}
 		& label::before {
 			content: "";
@@ -192,7 +188,10 @@ h2 {
 	}
 
 	.references{
+		
+
 		font-size: 18px;
+		@media (max-width: 425px){font-size: 14px;}
 		& a {
 			text-decoration: underline;
 			color: $hoverColor;

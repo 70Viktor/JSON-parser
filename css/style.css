@@ -88,6 +88,15 @@ h1 {
   line-height: 100px;
   font-weight: bold;
   margin-bottom: 40px;
+  text-align: center;
+}
+
+@media (max-width: 425px) {
+  h1 {
+    margin-bottom: 25px;
+    font-size: 40px;
+    line-height: 60px;
+  }
 }
 
 h2 {
@@ -98,22 +107,18 @@ h2 {
   margin-bottom: 30px;
 }
 
+@media (max-width: 425px) {
+  h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+
 .wrapper {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  min-height: 100%;
+  max-width: 530px;
+  margin: 0 auto;
 }
 
 .load::before {
@@ -139,20 +144,19 @@ h2 {
   z-index: 1000;
 }
 
-.form__body {
+.form,
+.parse,
+h1 {
+  padding: 0 15px;
+}
+
+.file {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .file__item {
@@ -195,17 +199,13 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding: 20px 0;
 }
 
 .btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  min-width: 150px;
-  margin: 20px;
   padding: 10px 20px;
   border-radius: 5px;
   background: #60A3D9;
@@ -220,13 +220,14 @@ h2 {
   background: #0074B7;
 }
 
-#parse {
-  width: 530px;
-  margin: 0 auto;
-}
-
 .item-input {
   margin-bottom: 30px;
+}
+
+@media (max-width: 425px) {
+  .item-input {
+    margin-bottom: 15px;
+  }
 }
 
 .item-input label {
@@ -242,10 +243,6 @@ h2 {
   width: 100%;
   font-size: 18px;
   border-radius: 5px;
-}
-
-.item-input .input-color {
-  max-width: 50%;
 }
 
 .item-input--checkbox {
@@ -274,6 +271,12 @@ h2 {
           align-items: center;
   position: relative;
   cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  .item-input--checkbox label {
+    font-size: 14px;
+  }
 }
 
 .item-input--checkbox label::before {
@@ -321,6 +324,12 @@ h2 {
 
 .references {
   font-size: 18px;
+}
+
+@media (max-width: 425px) {
+  .references {
+    font-size: 14px;
+  }
 }
 
 .references a {
