@@ -25,7 +25,6 @@ function readFile(formFile) {
 	reader.onload = function() {
 		try {
 			content = JSON.parse(reader.result)
-			console.log(reader.result)
 		}
 		catch {
 			alert('Выберете файл, содержащий JSON')
@@ -84,7 +83,6 @@ function jsonParse() {
 	}
 	if (document.querySelector('.link')) {
 		links = document.querySelectorAll('.link')
-		console.dir(links)
 		for (let link = 0; link < links.length; link++) {
 			links[link].addEventListener('click', (e) => {
 				e.preventDefault()
@@ -106,6 +104,16 @@ form.addEventListener('reset', () => {
 	parse.innerHTML = ''
 	content = {}
 })
+
+parse.addEventListener('submit', (e) => {
+	e.preventDefault()
+	sendParseForm(e)
+})
+
+function sendParseForm(e) {
+	console.dir(e)
+	alert('Теперь нужно что-то сделать, чтобы отправить форму, но я ещё не понял как это сделать')
+}
 
 function bildHTML(content) {
 	
@@ -171,11 +179,8 @@ function bildFields(fields) {
 					}
 					case 'technology' : {
 						block.append(createTechnology(fields[field]))
-					}
-
-					
-				}
-				
+					}	
+				}		
 			}
 		}
 		parse.append(block)
@@ -189,13 +194,15 @@ function bildButtons(buttons) {
 		let btn = document.createElement('button')
 		btn.classList.add('btn')
 		btn.innerHTML = buttons[button]['text']
+		if (button == 0) {
+			btn.setAttribute('type', 'submit')
+		} else if (button == 1) {
+			btn.setAttribute('type', 'reset')
+		}
 		block.append(btn)
 	}
 	parse.append(block)
 }
-
-
-
 
 function bildReferences(references) {
 	let block = document.createElement('div')
@@ -257,8 +264,6 @@ function createColor (inputObj) {
 	input.setAttribute('value', list.firstChild.firstChild.textContent)
 	block.append(input)
 	block.append(list)
-
-	
 
 	return block
 }
@@ -347,7 +352,6 @@ function createTechnology(inputObj) {
 		let option = document.createElement('input')
 		option.setAttribute('type', 'checkbox')
 		option.id = id
-		//option.innerHTML = inputObj.input.technologies[technology]
 
 		id++
 		select.append(option)
@@ -397,8 +401,6 @@ function createCheckboxReference(inputObj) {
 	return block
 }
 
-
-
 function uploadPreview(file, block) {
 	if (!['image/jpeg', 'image/gif', 'image/png'].includes(file.type)) {
 		alert('Разрешены только изображения')
@@ -410,8 +412,9 @@ function uploadPreview(file, block) {
 		block.nextSibling.innerHTML = `<img src="${e.target.result}" alt="" >`
 		}
 	}
-
 }
+
+
 
 	});
 
